@@ -30,6 +30,7 @@ nOCalculateBtn.addEventListener('click', nO)
 changeEl.addEventListener('click', change)
 
 let order = true
+// Endrer rekkefølgen på nether og overworld
 function change(){
     if(order == true){
         netherOver.style.flexDirection = "column-reverse"
@@ -41,6 +42,7 @@ function change(){
     order = !order
 }
 
+// Konverterer koordinater fra overworld til nether eller omvendt
 function nO(){
     if(order == true){
         xNetherEl.value = Math.round(xOverEl.value / 8)
@@ -50,6 +52,7 @@ function nO(){
         yOverEl.value = Math.round(yNetherEl.value * 8)
     }
 }
+// Regner ut antall blocks
 function blocks(){
     let antall = vAB_L/(Number(blocksEl.value) + 1)
     console.log("vAB_L", vAB_L)
@@ -62,24 +65,29 @@ function blocks(){
 
 let vAB_L
 
+// Regner ut vinkel og lengde
 function map(){
     console.log("click")
 
+    // Henter verdier fra input
     let x1 = x1El.value
     let y1 = y1El.value
     let x2 = x2El.value
     let y2 = y2El.value
 
+    // Enhetsvektor og vektor AB
     let vO = [0,1]
     let vAB = []
     
+    // Lager vektor AB
     vAB.push(x2-x1)
     vAB.push(y2-y1)
     
+    // Lengde på vektor AB og enhetsvektor
     let vO_L = 1
     vAB_L = ((x2-x1)**2 + (y2-y1)**2)**(1/2)
     
-    
+    // Regner ut vinkelen
     let cos = (vAB[0]*vO[0] + vAB[1]*vO[1])/(vO_L*vAB_L)
     
     let vinkel = Math.acos(cos)
@@ -89,8 +97,10 @@ function map(){
         grader = grader*(-1)
     }
 
+    // Endrer pilen ut ifra vinkele
     if(grader<0){
         pilEl.style.transform = `rotate(${Math.abs(grader)}deg)`
+        // Portal roterer motsatt
         portal2El.style.transform = `rotate(${grader}deg)`
 
         lengdeEl.style.transform = "rotate(0deg)"
@@ -98,6 +108,7 @@ function map(){
 
     }else{
         pilEl.style.transform = `rotate(${(-1)*grader}deg)`
+        // Portal roterer motsatt
         portal2El.style.transform = `rotate(${grader}deg)`
 
         lengdeEl.style.transform = "rotate(180deg)"

@@ -14,7 +14,7 @@ body{
 }
 
 main{
-    height:770px;
+    height:900px;
     padding-block:20px;
     overflow: hidden;
 }
@@ -233,7 +233,7 @@ main{
 /* ----media queries---- */
 @media (max-width: 750px){
     #shop{
-        transform: translateX(-30px) translateY(-800px);
+        transform: translateX(-30px) translateY(-820px);
     }
     #shop.show{
         transform: translateX(-30px) translateY(35px);
